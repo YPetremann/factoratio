@@ -35,10 +35,8 @@ function Tree(name) {
     if (factories[factory]) {
       var maxInputSpeed = (inputInserters ? inserters[inputInserters].speed * 60 : 1000000) / inputCount;
       var maxOutputSpeed = (outputInserters ? inserters[outputInserters].speed * 60 : 1000000) / outputCount;
-      var maxSpeed = Math.min(maxInputSpeed, maxOutputSpeed);
       var factorySpeed = factories[factory].speed * itemSpeed;
-      var total = Math.min(factorySpeed, maxSpeed);
-      return {total: total, factory: factorySpeed, input: maxInputSpeed, output: maxOutputSpeed, inputCount: inputCount, outputCount: outputCount};
+      return {total: factorySpeed, factory: factorySpeed, input: maxInputSpeed, output: maxOutputSpeed, inputCount: inputCount, outputCount: outputCount};
     } else {
       return undefined;
     }

@@ -104,18 +104,6 @@ var ui_scheme = {
           template: "{common.space()}{common.icon()} &nbsp;#value#",
           tooltip: false
         }, {
-          id: "count",
-          header: "Count",
-          template: helpers.renderCount,
-          width: 100,
-          tooltip: tooltips.count
-        }, {
-          id: "factorySpeed",
-          header: "u/m/factory",
-          format: helpers.speedFormat,
-          width: 100,
-          tooltip: tooltips.factorySpeed
-        }, {
           id: "factory",
           header: "Factory",
           editor: 'myselect',
@@ -129,7 +117,7 @@ var ui_scheme = {
           editor: 'myselect',
           fillspace: 225,
           template: helpers.renderInputInserters,
-          options: logic.selectInserters,
+          options: logic.selectInputInserters,
           tooltip: tooltips.inputInserters
         }, {
           id: "outputInserters",
@@ -137,7 +125,7 @@ var ui_scheme = {
           editor: 'myselect',
           fillspace: 225,
           template: helpers.renderOutputInserters,
-          options: logic.selectInserters,
+          options: logic.selectOutputInserters,
           tooltip: tooltips.outputInserters
         }]
       }
@@ -161,18 +149,6 @@ var ui_scheme = {
           fillspace: 300,
           template: "{common.space()}{common.icon()} &nbsp;#value#",
           tooltip: false
-        }, {
-          id: "count",
-          header: "Count",
-          template: helpers.renderCount,
-          width: 100,
-          tooltip: tooltips.count
-        }, {
-          id: "factorySpeed",
-          header: "u/m/factory",
-          format: helpers.speedFormat,
-          width: 100,
-          tooltip: tooltips.factorySpeed
         }, {
           id: "factory",
           header: "Factory",

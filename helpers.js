@@ -59,21 +59,42 @@ var helpers = {
   },
   renderFactory: function(line, common) {
     if (line.factory) {
-      return helpers.formatModified(factories[line.factory].name, line.factoryModified ? "strong" : null)
+      var count = line.targetSpeed / line.factorySpeed.total;
+      return helpers.countFormat(Math.ceil(count)) + "x " + helpers.formatModified(factories[line.factory].name, line.factoryModified ? "strong" : null) + " (" + helpers.countFormat(count) + "x " + helpers.formatNumber(line.factorySpeed.total, 60) + "/m)";
     } else {
       return "";
     }
   },
   renderInputInserters: function(line, common) {
-    if (line.inputInserters) {
-      return helpers.formatModified(inserters[line.inputInserters].name, line.inputInsertersModified ? "strong" : null);
+    var itemSpeed = 1;
+    var inputCount = 0;
+    if (recipes[line.item]) {
+      $.each(recipes[line.item].ingredients, function(index, ingredient) {
+        inputCount += ingredient[1];
+      });
+      itemSpeed = recipes[line.item].speed;
+    } 
+    if (line.inputInserters && factories[line.factory]) {
+      var factorySpeed = factories[line.factory].speed * itemSpeed;
+      var maxInputSpeed = (line.inputInserters ? inserters[line.inputInserters].speed * 60 : 1000000) / inputCount;
+      var count = factorySpeed / maxInputSpeed;
+      return helpers.countFormat(Math.ceil(count)) + "x " + helpers.formatModified(inserters[line.inputInserters].name, line.inputInsertersModified ? "strong" : null)+ " (" + helpers.countFormat(count) + "x " + helpers.formatNumber(inserters[line.inputInserters].speed * 60, 60) + "/m)";
     } else {
       return "";
     }
   },
   renderOutputInserters: function(line, common) {
-    if (line.outputInserters) {
-      return helpers.formatModified(inserters[line.outputInserters].name, line.outputInsertersModified ? "strong" : null);
+    var itemSpeed = 1;
+    var outputCount = 0;
+    if (recipes[line.item]) {
+      outputCount = recipes[line.item].resultCount;
+      itemSpeed = recipes[line.item].speed;
+    }
+    if (line.outputInserters && factories[line.factory]) {
+      var factorySpeed = factories[line.factory].speed * itemSpeed;
+      var maxOutputSpeed = (line.outputInserters ? inserters[line.outputInserters].speed * 60 : 1000000) / outputCount;
+      var count = factorySpeed / maxOutputSpeed;
+      return helpers.countFormat(Math.ceil(count)) + "x " + helpers.formatModified(inserters[line.outputInserters].name, line.outputInsertersModified ? "strong" : null)+ " (" + helpers.countFormat(count) + "x " + helpers.formatNumber(inserters[line.outputInserters].speed * 60, 60) + "/m)";
     } else {
       return "";
     }
