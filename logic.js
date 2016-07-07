@@ -45,12 +45,44 @@ var logic = {
     logic.recipeTree = new Tree("recipe_tree");
     logic.ratioTree = new Tree("ratio_tree");
   },
-  selectInserters: function(id) {
+  selectInputInserters: function(id) {
+    var line = model.treeLines[id.row];
+    var itemSpeed = 1;
+    var inputCount = 0;
+    if (recipes[line.item]) {
+      $.each(recipes[line.item].ingredients, function(index, ingredient) {
+        inputCount += ingredient[1];
+      });
+      itemSpeed = recipes[line.item].speed;
+    }
+    var factorySpeed = factories[line.factory].speed * itemSpeed;
     var selectedInserters = [];
     $.each(inserters, function(index, inserter) {
+      var maxInputSpeed = (inserter ? inserter.speed * 60 : 1000000) / inputCount;
+      var count = factorySpeed / maxInputSpeed;
       selectedInserters.push({
         id: inserter.id,
-        value: inserter.name + " (" + helpers.formatNumber(inserter.speed * 60, 60) + " u/m)"
+        value: helpers.countFormat(Math.ceil(count)) + "x " + inserter.name + " (" + helpers.countFormat(count) + "x " + helpers.formatNumber(inserter.speed * 60, 60) + "/m)"
+      });
+    });
+    return selectedInserters;
+  },
+  selectOutputInserters: function(id) {
+    var line = model.treeLines[id.row];
+    var itemSpeed = 1;
+    var outputCount = 0;
+    if (recipes[line.item]) {
+      outputCount = recipes[line.item].resultCount;
+      itemSpeed = recipes[line.item].speed;
+    }
+    var factorySpeed = factories[line.factory].speed * itemSpeed;
+    var selectedInserters = [];
+    $.each(inserters, function(index, inserter) {
+      var maxOutputSpeed = (inserter ? inserter.speed * 60 : 1000000) / outputCount;
+      var count = factorySpeed / maxOutputSpeed;
+      selectedInserters.push({
+        id: inserter.id,
+        value: helpers.countFormat(Math.ceil(count)) + "x " + inserter.name + " (" + helpers.countFormat(count) + "x " + helpers.formatNumber(inserter.speed * 60, 60) + "/m)"
       });
     });
     return selectedInserters;

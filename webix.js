@@ -117,7 +117,7 @@ var ui_scheme = {
           editor: 'myselect',
           fillspace: 225,
           template: helpers.renderInputInserters,
-          options: logic.selectInserters,
+          options: logic.selectInputInserters,
           tooltip: tooltips.inputInserters
         }, {
           id: "outputInserters",
@@ -125,7 +125,7 @@ var ui_scheme = {
           editor: 'myselect',
           fillspace: 225,
           template: helpers.renderOutputInserters,
-          options: logic.selectInserters,
+          options: logic.selectOutputInserters,
           tooltip: tooltips.outputInserters
         }]
       }
