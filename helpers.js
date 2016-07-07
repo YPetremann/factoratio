@@ -59,7 +59,8 @@ var helpers = {
   },
   renderFactory: function(line, common) {
     if (line.factory) {
-      return helpers.formatModified(factories[line.factory].name, line.factoryModified ? "strong" : null)
+      var count = line.targetSpeed / line.factorySpeed.total;
+      return helpers.countFormat(Math.ceil(count)) + "x " + helpers.formatModified(factories[line.factory].name, line.factoryModified ? "strong" : null) + " (" + helpers.countFormat(count) + "x " + helpers.formatNumber(line.factorySpeed.total, 60) + "/m)";
     } else {
       return "";
     }

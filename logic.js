@@ -56,17 +56,18 @@ var logic = {
     return selectedInserters;
   },
   selectFactories: function(id) {
-    var item = model.treeLines[id.row].item;
-    var factories = helpers.findFactories(item);
+    var line = model.treeLines[id.row];
+    var factories = helpers.findFactories(line.item);
     var selectableFactories = [];
     var itemSpeed = 1;
-    if (recipes[item]) {
-      itemSpeed = recipes[item].speed;
+    if (recipes[line.item]) {
+      itemSpeed = recipes[line.item].speed;
     }
     $.each(factories, function(index, factory) {
+      var count = line.targetSpeed / (itemSpeed * factory.speed);
       selectableFactories.push({
         id: factory.id,
-        value: factory.name + " (" + helpers.formatNumber(itemSpeed * factory.speed, 60) + " u/m)"
+        value: helpers.countFormat(Math.ceil(count)) + "x " + factory.name + " (" + helpers.countFormat(count) + "x " + helpers.formatNumber(itemSpeed * factory.speed, 60) + "/m)"
       });
     });
     return selectableFactories;
