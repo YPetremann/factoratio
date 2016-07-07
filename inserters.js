@@ -4,7 +4,7 @@ inserters = {
   "smart_inserter": {"id": "smart_inserter", "name": "Smart inserter", "speed": 0.035, "extensionSpeed": 0.07}, 
   "basic_inserter": {"id": "basic_inserter", "name": "Inserter", "speed": 0.014, "extensionSpeed": 0.028}, 
   "burner_inserter": {"id": "burner_inserter", "name": "Burner Inserter", "speed": 0.01, "extensionSpeed": 0.02}, 
-  "fast_transport_belt": {"id": "fast_transport_belt", "name": "Fast Transport Belt", "speed": 0.0625}, 
   "basic_transport_belt": {"id": "basic_transport_belt", "name": "Transport Belt", "speed": 0.03125}, 
+  "fast_transport_belt": {"id": "fast_transport_belt", "name": "Fast Transport Belt", "speed": 0.0625}, 
   "express_transport_belt": {"id": "express_transport_belt", "name": "Express Transport Belt", "speed": 0.09375}
 };
