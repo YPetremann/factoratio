@@ -232,7 +232,7 @@ recipes = {
     "ingredients": [
       ["electronic_circuit", 10.0],
       ["iron_gear_wheel", 10.0],
-      ["fast_transport_belt", 4.0]
+      ["basic_splitter", 1.0]
     ]
   },
   "basic_electric_discharge_defense_equipment": {
@@ -691,7 +691,8 @@ recipes = {
     "ingredients": [
       ["advanced_circuit", 10.0],
       ["iron_gear_wheel", 10.0],
-      ["express_transport_belt", 4.0]
+      ["fast_splitter", 1.0],
+      ["lubricant", 2.0]
     ]
   },
   "plastic_bar": {
@@ -747,7 +748,8 @@ recipes = {
     "category": "crafting",
     "ingredients": [
       ["iron_gear_wheel", 40.0],
-      ["fast_transport_belt_to_ground", 2.0]
+      ["fast_transport_belt_to_ground", 2.0],
+      ["lubricant", 4.0]
     ]
   },
   "iron_axe": {
